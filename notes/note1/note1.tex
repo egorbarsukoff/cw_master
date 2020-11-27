@@ -1,0 +1,147 @@
+ 
+
+\documentclass[12pt]{article}
+\usepackage[russian]{babel}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\usepackage{setspace}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[nohead]{geometry}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{geometry}
+\usepackage{xcolor}
+
+
+
+
+
+
+\setcounter{MaxMatrixCols}{10}
+
+
+\newtheorem{theorem}{Теорема}
+\newtheorem{acknowledgement}{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}{Предложение}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{assumption}{Assumption}
+%\newtheorem{corollary}{Corollary}[section]
+\newenvironment{proof}[1][Доказательство]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+\geometry{left=0.75in,right=0.75in,top=1in,bottom=1in}
+
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand\abs[1]{\left\lvert#1\right\rvert}
+
+
+
+\begin{document}
+Пусть каждый индивид определяется каким-то вектором параметров $\theta \in \mathcal{A}$.  Пусть эти параметры имеют распределение $G$,  то есть вероятность того,  что $\theta$ принадлежит какому-то множеству $A$ определяется следующим образом:
+$$
+P_G(A) = \int_A G(d \theta),
+$$
+при этом $P_G(\mathcal{A}) =1$.
+ 
+Пусть $\tilde{\omega}(\theta', \theta'') \geqslant 0$ --- вес,  показывающий влияние индивида $\theta''$ на $\theta'$ при составлении социальной нормы.  Чтобы оценивать среднее, а не агрегированное влияние на индивида,  введем нормированные веса $\omega$:
+$$
+\omega(\theta', \theta'') = \frac{\tilde{\omega}(\theta', \theta'')}{\int_{\theta \in \mathcal{A}} \tilde{\omega}(\theta, \theta'')G(d \theta)} .
+$$
+Тогда социальная норма $\overline{x}(\theta)$ описывается как
+$$
+\overline{x}(\theta) = \int_{\theta' \in \mathcal{A}} x(\theta') \omega(\theta, \theta') G(d \theta').
+$$
+Так как по определению $\omega$
+$$
+\int_{\theta' \in \mathcal{A}} \omega(\theta, \theta') G(d \theta') = 1 \quad \forall \theta \in \mathcal{A},
+$$
+то
+$$
+G_\theta (A) = \int_{\theta' \in A} \omega(\theta, \theta') G(d \theta')
+$$
+определяет распределение для каждого индивида. Его можно интерпретировать как распределение внимания индивида $\theta$ при составлении социальной нормы.  Тогда
+
+$$
+\overline{x}(\theta) =  \int_{\theta' \in \mathcal{A}} x(\theta') G_\theta(d \theta') = \mathbb{E}_{G_\theta}(x).
+$$
+\textcolor{red}{$\mathbb{E}_{G_\theta}(x)$ выглядит не самым корректным обозначением} 
+
+Пусть полезность каждого индивида определяется следующим образом:
+
+\begin{equation*}
+u(\theta) = -\frac{1}{2}(x(\theta)-\alpha(\theta))^2-\frac{1}{2}\frac{\lambda}{1-\lambda}\left(x(\theta) - \overline{x}(\theta)\right)^2,
+\end{equation*}
+где $\lambda \in (0, 1)$.  Условие первого порядка (для $x$)записывается как
+\begin{equation}
+\label{eq: x}
+x(\theta) = (1-\lambda)\alpha(\theta) + \lambda \overline{x}(\theta).
+\end{equation}
+
+\begin{proposition}
+Существует единственная функция $x(\theta)$ удовлетворяющая условию \eqref{eq: x}.
+\end{proposition}
+\begin{proof}
+Пусть $\rho(x', x'') = \norm{x' - x''}_\infty = \sup\limits_\theta \abs{x'(\theta) - x''(\theta)}$ --- метрика,  порожденная sup-нормой. Также пусть $\mathbb{A} = (1-\lambda)\alpha(\theta) + \lambda \overline{x}(\theta)$ --- оператор,  воздействующий, как правая часть \eqref{eq: x}.  Для того,  чтобы у \eqref{eq: x} существовала единственная неподвижная точка,  достаточно показать, что $\mathbb{A}$ --- сжимающее отображение,  т.е.  существует такое $\alpha \in [0, 1)$, что $\rho(\mathbb{A}x',\mathbb{A}x'') \leqslant \alpha \rho(x', x'')$ для любых $x', x''$.
+
+\begin{align*}
+\rho(\mathbb{A}x',\mathbb{A}x'') &= \norm{(1-\lambda)\alpha + \lambda \overline{x'} - ((1-\lambda)\alpha + \lambda \overline{x''})}_\infty \\
+&= \lambda \norm{\overline{x'} - \overline{x''}}_\infty 
+= \lambda \sup\limits_\theta \abs{\overline{x'}(\theta) - \overline{x''}(\theta)} \\
+&= \lambda \sup\limits_\theta \abs{\int_{\theta' \in \mathcal{A}} x'(\theta') G_\theta(d \theta') - \int_{\theta' \in \mathcal{A}} x''(\theta') G_\theta(d \theta')} \\
+&= \lambda \sup\limits_\theta \abs{\int_{\theta' \in \mathcal{A}} (x'(\theta') - x''(\theta')) G_\theta(d \theta')}
+\end{align*}
+Так как 
+$$
+-\rho(x', x'') \leqslant (x'(\theta') - x''(\theta')) \leqslant \rho(x', x'') \quad \forall \theta' \in \mathcal{A}
+$$
+и $G_\theta(\mathcal{A}) = 1$, то модуль интеграла не превосходит $ \rho(x', x'')$,  таким образом
+\begin{align*}
+\rho(\mathbb{A}x',\mathbb{A}x'') 
+&= \lambda \sup\limits_\theta \abs{\int_{\theta' \in \mathcal{A}} (x'(\theta') - x''(\theta')) G_\theta(d \theta')} \\
+&\leqslant \lambda \sup\limits_\theta \rho(x', x'') =  \lambda \rho(x', x'')
+\end{align*}
+Но $\lambda < 1$,  поэтому $\mathbb{A}$ --- сжимающее отображение.  Следовательно существует единственная функция $x$ удовлетворяющая \eqref{eq: x}.
+\end{proof}
+
+\begin{proposition}
+Если $\omega(\theta', \theta'') = \omega(\theta'', \theta')$,  то $\mathbb{E} x = \mathbb{E} \alpha$.
+\end{proposition}
+\begin{proof}
+Найдем математическое ожидание от обоих частей равенства \eqref{eq: x}:
+\begin{align*}
+\mathbb{E}x &= \mathbb{E} \left[(1-\lambda)\alpha(\theta) + \lambda \overline{x}(\theta) \right] \\
+&= (1-\lambda) \mathbb{E} \alpha + \lambda \mathbb{E}  \overline{x}.
+\end{align*}
+Вычислим $\mathbb{E} \overline{x}$:
+\begin{align*}
+\mathbb{E} \overline{x} &= \mathbb{E} \int_{\theta' \in \mathcal{A}} x(\theta') \omega(\theta, \theta') G(d \theta') \\
+&=  \int_{\theta' \in \mathcal{A}} x(\theta') \mathbb{E} \left[ \omega(\theta, \theta') \right] G(d \theta') \\ 
+&=  \int_{\theta' \in \mathcal{A}} x(\theta') \mathbb{E} \left[ \omega(\theta', \theta) \right] G(d \theta') \\
+&=  \int_{\theta' \in \mathcal{A}} x(\theta') G(d \theta') = \mathbb{E} x.
+\end{align*}
+Тогда 
+\begin{align*}
+\mathbb{E}x &= (1-\lambda) \mathbb{E} \alpha + \lambda \mathbb{E} x. \\
+(1-\lambda)\mathbb{E}x &=(1-\lambda) \mathbb{E}\alpha \\
+\mathbb{E}x &=  \mathbb{E}\alpha
+\end{align*}
+\end{proof}
+\end{document}
