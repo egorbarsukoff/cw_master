@@ -52,37 +52,38 @@
 \newcommand\norm[1]{\left\lVert#1\right\rVert}
 \newcommand\abs[1]{\left\lvert#1\right\rvert}
 
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\DeclareMathOperator*{\essinf}{ess\,inf}
 
 
 \begin{document}
 Пусть каждый индивид определяется каким-то вектором параметров $\theta \in \mathcal{A}$.  Пусть эти параметры имеют распределение $G$,  то есть вероятность того,  что $\theta$ принадлежит какому-то множеству $A$ определяется следующим образом:
 $$
-P_G(A) = \int_A G(d \theta),
+P_G(A) = \int\limits_A G(d \theta),
 $$
 при этом $P_G(\mathcal{A}) =1$.
  
 Пусть $\tilde{\omega}(\theta', \theta'') \geqslant 0$ --- вес,  показывающий влияние индивида $\theta''$ на $\theta'$ при составлении социальной нормы.  Чтобы оценивать среднее, а не агрегированное влияние на индивида,  введем нормированные веса $\omega$:
 $$
-\omega(\theta', \theta'') = \frac{\tilde{\omega}(\theta', \theta'')}{\int_{\theta \in \mathcal{A}} \tilde{\omega}(\theta, \theta'')G(d \theta)} .
+\omega(\theta', \theta'') = \frac{\tilde{\omega}(\theta', \theta'')}{\int\limits_{\theta \in \mathcal{A}} \tilde{\omega}(\theta, \theta'')G(d \theta)} .
 $$
 Тогда социальная норма $\overline{x}(\theta)$ описывается как
 $$
-\overline{x}(\theta) = \int_{\theta' \in \mathcal{A}} x(\theta') \omega(\theta, \theta') G(d \theta').
+\overline{x}(\theta) = \int\limits_{\theta' \in \mathcal{A}} x(\theta') \omega(\theta, \theta') G(d \theta').
 $$
 Так как по определению $\omega$
 $$
-\int_{\theta' \in \mathcal{A}} \omega(\theta, \theta') G(d \theta') = 1 \quad \forall \theta \in \mathcal{A},
+\int\limits_{\theta' \in \mathcal{A}} \omega(\theta, \theta') G(d \theta') = 1 \quad \forall \theta \in \mathcal{A},
 $$
 то
 $$
-G_\theta (A) = \int_{\theta' \in A} \omega(\theta, \theta') G(d \theta')
+G_\theta (A) = \int\limits_{\theta' \in A} \omega(\theta, \theta') G(d \theta')
 $$
 определяет распределение для каждого индивида. Его можно интерпретировать как распределение внимания индивида $\theta$ при составлении социальной нормы.  Тогда
 
 $$
-\overline{x}(\theta) =  \int_{\theta' \in \mathcal{A}} x(\theta') G_\theta(d \theta') = \mathbb{E}_{G_\theta}(x).
+\overline{x}(\theta) =  \int\limits_{\theta' \in \mathcal{A}} x(\theta') G_\theta(d \theta').
 $$
-\textcolor{red}{$\mathbb{E}_{G_\theta}(x)$ выглядит не самым корректным обозначением} 
 
 Пусть полезность каждого индивида определяется следующим образом:
 
@@ -95,33 +96,31 @@ u(\theta) = -\frac{1}{2}(x(\theta)-\alpha(\theta))^2-\frac{1}{2}\frac{\lambda}{1
 x(\theta) = (1-\lambda)\alpha(\theta) + \lambda \overline{x}(\theta).
 \end{equation}
 
+
 \begin{proposition}
 Существует единственная функция $x(\theta)$ удовлетворяющая условию \eqref{eq: x}.
 \end{proposition}
 \begin{proof}
-Пусть $\rho(x', x'') = \norm{x' - x''}_\infty = \sup\limits_\theta \abs{x'(\theta) - x''(\theta)}$ --- метрика,  порожденная sup-нормой. Также пусть $\mathbb{A} = (1-\lambda)\alpha(\theta) + \lambda \overline{x}(\theta)$ --- оператор,  воздействующий, как правая часть \eqref{eq: x}.  Для того,  чтобы у \eqref{eq: x} существовала единственная неподвижная точка,  достаточно показать, что $\mathbb{A}$ --- сжимающее отображение,  т.е.  существует такое $\alpha \in [0, 1)$, что $\rho(\mathbb{A}x',\mathbb{A}x'') \leqslant \alpha \rho(x', x'')$ для любых $x', x''$.
+Пусть $\rho(x', x'') = \norm{x' - x''}_\infty = \sup\limits_\theta \abs{x'(\theta) - x''(\theta)}$ --- метрика,  порожденная sup-нормой. Также пусть $\mathbb{A} = (1-\lambda)\alpha(\theta) + \lambda \overline{x}(\theta)$ --- оператор,  воздействующий, как правая часть \eqref{eq: x}.  Для того,  чтобы у \eqref{eq: x} существовала единственная неподвижная точка,  достаточно показать, что $\mathbb{A}$ --- сжимающее отображение,  т.е.  существует такое $\alpha \in (0, 1)$, что $\rho(\mathbb{A}x',\mathbb{A}x'') \leqslant \alpha \rho(x', x'')$ для любых $x', x''$.
 
 \begin{align*}
 \rho(\mathbb{A}x',\mathbb{A}x'') &= \norm{(1-\lambda)\alpha + \lambda \overline{x'} - ((1-\lambda)\alpha + \lambda \overline{x''})}_\infty \\
 &= \lambda \norm{\overline{x'} - \overline{x''}}_\infty 
 = \lambda \sup\limits_\theta \abs{\overline{x'}(\theta) - \overline{x''}(\theta)} \\
-&= \lambda \sup\limits_\theta \abs{\int_{\theta' \in \mathcal{A}} x'(\theta') G_\theta(d \theta') - \int_{\theta' \in \mathcal{A}} x''(\theta') G_\theta(d \theta')} \\
-&= \lambda \sup\limits_\theta \abs{\int_{\theta' \in \mathcal{A}} (x'(\theta') - x''(\theta')) G_\theta(d \theta')}
+&= \lambda \sup\limits_\theta \abs{\int\limits_{\theta' \in \mathcal{A}} x'(\theta') G_\theta(d \theta') - \int\limits_{\theta' \in \mathcal{A}} x''(\theta') G_\theta(d \theta')} \\
+&= \lambda \sup\limits_\theta \abs{\int\limits_{\theta' \in \mathcal{A}} (x'(\theta') - x''(\theta')) G_\theta(d \theta')} \\
+&\leq \lambda \sup\limits_\theta \abs{\int\limits_{\theta' \in \mathcal{A}} \abs{x'(\theta') - x''(\theta')} G_\theta(d \theta')} \\
+&\leq \lambda \sup\limits_\theta \abs{\int\limits_{\theta' \in \mathcal{A}} \norm{x' - x''}_\infty G_\theta(d \theta')} \\
+&= \lambda \sup\limits_\theta \abs{\int\limits_{\theta' \in \mathcal{A}} \rho(x', x'') G_\theta(d \theta')} \\
+&= \lambda \sup\limits_\theta \abs{\rho(x', x'')} = \lambda \rho(x', x'')
 \end{align*}
-Так как 
-$$
--\rho(x', x'') \leqslant (x'(\theta') - x''(\theta')) \leqslant \rho(x', x'') \quad \forall \theta' \in \mathcal{A}
-$$
-и $G_\theta(\mathcal{A}) = 1$, то модуль интеграла не превосходит $ \rho(x', x'')$,  таким образом
-\begin{align*}
-\rho(\mathbb{A}x',\mathbb{A}x'') 
-&= \lambda \sup\limits_\theta \abs{\int_{\theta' \in \mathcal{A}} (x'(\theta') - x''(\theta')) G_\theta(d \theta')} \\
-&\leqslant \lambda \sup\limits_\theta \rho(x', x'') =  \lambda \rho(x', x'')
-\end{align*}
+
 Но $\lambda < 1$,  поэтому $\mathbb{A}$ --- сжимающее отображение.  Следовательно существует единственная функция $x$ удовлетворяющая \eqref{eq: x}.
 \end{proof}
 
+
 \begin{proposition}
+\label{th:ex}
 Если $\omega(\theta', \theta'') = \omega(\theta'', \theta')$,  то $\mathbb{E} x = \mathbb{E} \alpha$.
 \end{proposition}
 \begin{proof}
@@ -132,16 +131,79 @@ $$
 \end{align*}
 Вычислим $\mathbb{E} \overline{x}$:
 \begin{align*}
-\mathbb{E} \overline{x} &= \mathbb{E} \int_{\theta' \in \mathcal{A}} x(\theta') \omega(\theta, \theta') G(d \theta') \\
-&=  \int_{\theta' \in \mathcal{A}} x(\theta') \mathbb{E} \left[ \omega(\theta, \theta') \right] G(d \theta') \\ 
-&=  \int_{\theta' \in \mathcal{A}} x(\theta') \mathbb{E} \left[ \omega(\theta', \theta) \right] G(d \theta') \\
-&=  \int_{\theta' \in \mathcal{A}} x(\theta') G(d \theta') = \mathbb{E} x.
+\mathbb{E} \overline{x} &= \mathbb{E} \int\limits_{\theta' \in \mathcal{A}} x(\theta') \omega(\theta, \theta') G(d \theta') \\
+&=  \int\limits_{\theta' \in \mathcal{A}} x(\theta') \mathbb{E} \left[ \omega(\theta, \theta') \right] G(d \theta') \\ 
+&=  \int\limits_{\theta' \in \mathcal{A}} x(\theta') \mathbb{E} \left[ \omega(\theta', \theta) \right] G(d \theta') \\
+&=  \int\limits_{\theta' \in \mathcal{A}} x(\theta') G(d \theta') = \mathbb{E} x.
 \end{align*}
 Тогда 
 \begin{align*}
-\mathbb{E}x &= (1-\lambda) \mathbb{E} \alpha + \lambda \mathbb{E} x. \\
-(1-\lambda)\mathbb{E}x &=(1-\lambda) \mathbb{E}\alpha \\
-\mathbb{E}x &=  \mathbb{E}\alpha
+\mathbb{E}x &= (1-\lambda) \mathbb{E} \alpha + \lambda \mathbb{E} x,\\
+(1-\lambda)\mathbb{E}x &=(1-\lambda) \mathbb{E}\alpha, \\
+\mathbb{E}x &=  \mathbb{E}\alpha.
 \end{align*}
 \end{proof}
+
+Пусть 
+$$
+\tilde{\omega}(\theta', \theta'') = x(\theta'')^{\beta(\theta')},
+$$
+тогда нормированные веса равны
+\begin{equation}
+\label{eq:weight}
+\omega(\theta', \theta'') = \frac{x(\theta'')^{\beta(\theta')}}{\int\limits_{\theta \in \mathcal{A}} x(\theta)^{\beta(\theta')}G(d \theta)}.
+\end{equation}
+
+\begin{proposition}
+Пусть веса заданы как \eqref{eq:weight} и $x(\theta) \geq 0$ для любого $\theta$.  Тогда 
+\begin{enumerate}
+\item $\lim\limits_{\beta \to\infty} \bar{x}(\beta) = \esssup\limits_{\theta} x(\theta)$
+\item $\lim\limits_{\beta \to-\infty} \bar{x}(\beta) = \essinf\limits_{\theta} x(\theta)$.
+\end{enumerate}.
+\end{proposition}
+\begin{proof}
+Здесь будет доказано первое утверждение.  Второе доказывается абсолютно аналогичным способом.
+
+Обозначим $\esssup x$ как $M$.   Для какого-то $\varepsilon > 0$ разобьем множество $\mathcal{A}$ на два дизъюнктных подмножества: 
+$\mathcal{D}_\varepsilon = \left\{ \theta \in \mathcal{A} \mid x(\theta) > M - \varepsilon \right\}$
+и 
+$ \widetilde{\mathcal{D}}_\varepsilon = \mathcal{A} \setminus \mathcal{D}_\varepsilon.$
+По определению $M$ множество $\mathcal{D}_\varepsilon$ имеет ненулевую меру.
+Разделим интегралы в числителе и знаменателе $\bar{x}$ на два:
+\begin{equation*}
+\bar{x}(\theta') = 
+\frac{\int\limits_{\theta \in \mathcal{A}}x(\theta)^{\beta(\theta')+1}G(d \theta)}{\int\limits_{\theta \in \widetilde{\mathcal{D}}_\varepsilon} x(\theta)^{\beta(\theta')}G(d \theta)} = 
+\frac{\int\limits_{\theta \in \mathcal{D}_\varepsilon}x(\theta)^{\beta(\theta')+1}G(d \theta) + \int\limits_{\theta \in \widetilde{\mathcal{D}}_\varepsilon}x(\theta)^{\beta(\theta')+1}G(d \theta)}{\int\limits_{\theta \in \mathcal{D}_\varepsilon} x(\theta)^{\beta(\theta')}G(d \theta) + \int\limits_{\theta \in \widetilde{\mathcal{D}}_\varepsilon} x(\theta)^{\beta(\theta')}G(d \theta)}.
+\end{equation*}
+По теореме о среднем,  непрерывности и монотонности возведения в степень положительного числа существуют такие $x_{M_1},  x_{M_2} \in x(\mathcal{D}_\varepsilon)$ и $x_{m_1}, x_{m_2} \in x(\widetilde{\mathcal{D}}_\varepsilon)$,  что
+\begin{align*}
+\int\limits_{\theta \in \mathcal{D}_\varepsilon}x(\theta)^{\beta(\theta')+1}G(d \theta) &= G(\mathcal{D}_\varepsilon) x_{M_1}^{\beta + 1}  \\
+\int\limits_{\theta \in \widetilde{\mathcal{D}}_\varepsilon}x(\theta)^{\beta(\theta')+1}G(d \theta) &= G(\widetilde{\mathcal{D}}_\varepsilon) x_{m_1}^{\beta+1}\\
+\int\limits_{\theta \in \mathcal{D}_\varepsilon}x(\theta)^{\beta(\theta')}G(d \theta) &= G(\mathcal{D}_\varepsilon) x_{M_2}^{\beta}  \\
+\int\limits_{\theta \in \widetilde{\mathcal{D}}_\varepsilon}x(\theta)^{\beta(\theta')}G(d \theta) &= G(\widetilde{\mathcal{D}}_\varepsilon) x_{m_2}^{\beta}.
+\end{align*}
+Поэтому 
+\begin{equation*}
+\bar{x}(\theta') = \frac{G(\mathcal{D}_\varepsilon) x_{M_1}^{\beta + 1} + G(\widetilde{\mathcal{D}}_\varepsilon) x_{m_1}^{\beta+1}}{G(\mathcal{D}_\varepsilon) x_{M_2}^{\beta} + G(\widetilde{\mathcal{D}}_\varepsilon) x_{m_2}^{\beta}}.
+\end{equation*}
+Так как $x_{M_1} > x_{m_1}$ по определению то,  при $\beta \to \infty$,  $x_{m_1} = o(x_{M_1}). $ 
+Аналогично $x_{m_2} = o(x_{M_2}). $ 
+Из определения чисел $x_{M_1}$ и $x_{M_2}$,  следует,  что $\abs{x_{M_i} - M} < \varepsilon$.  Поэтому при $\varepsilon \to 0$ оба $x_{M_i}$ стремятся к $M$. 
+А так как $G(\mathcal{D}_\varepsilon) \neq 0$ ,  то
+\begin{equation*}
+\bar{x}(\theta') = \frac{G(\mathcal{D}_\varepsilon) x_{M_1}^{\beta + 1} + o(x_{M_1}^{\beta+1})}{G(\mathcal{D}_\varepsilon) x_{M_2}^{\beta} + o(x_{M_2}^{\beta})} \xrightarrow[\beta \to \infty]{ \varepsilon \to 0} \frac{G(\mathcal{D}_\varepsilon)M^{\beta+1}}{G(\mathcal{D}_\varepsilon)M^{\beta}} = M = \esssup x.
+\end{equation*}
+\end{proof}
+
+Такая функция весов имеет смысл потому что при $\beta(\theta) \rightarrow \infty$ распределение $G_\theta$ слабо сходится к $\delta_{\max x}$,  а при $\beta(\theta) \rightarrow -\infty$ оно слабо сходится к $\delta_{\min x}$.  
+То есть при больших параметрах $\beta$ индивид строит свою социальную норму из наиболее успешных соседей,  а при маленьких значениях $\beta$ социальной нормой для индивида будут являться наименее успешные соседи что и выражает <<амбиции>>.
+Тогда \eqref{eq: x} принимает следующий вид
+$$
+x(\theta) = (1-\lambda)\alpha(\theta) + \lambda \frac{\int\limits_{\theta' \in \mathcal{A}} x(\theta')^{\beta(\theta) + 1} G(d \theta')}{\int\limits_{\theta' \in \mathcal{A}} x(\theta')^{\beta(\theta)}G(d \theta')}.
+$$
+Или,  в случае $m$ атомарных индивидов,
+$$
+x_i = (1-\lambda) \alpha_i + \lambda \frac{\sum\limits_{j=1}^m x_j^{\beta_i+1}}{\sum\limits_{j=1}^m x_j^{\beta_i}}, \quad i = 1,\dots , m.
+$$
+
 \end{document}
