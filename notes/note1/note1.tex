@@ -157,12 +157,15 @@ $$
 \begin{proposition}
 Пусть веса заданы как \eqref{eq:weight} и $x(\theta) \geq 0$ для любого $\theta$.  Тогда 
 \begin{enumerate}
+\item $\bar{x}(\beta) = \int\limits_{\theta \in \mathcal{A}}x(\theta)G(d \theta) = \mathbb{E} x$
 \item $\lim\limits_{\beta \to\infty} \bar{x}(\beta) = \esssup\limits_{\theta} x(\theta)$
 \item $\lim\limits_{\beta \to-\infty} \bar{x}(\beta) = \essinf\limits_{\theta} x(\theta)$.
 \end{enumerate}.
 \end{proposition}
 \begin{proof}
-Здесь будет доказано первое утверждение.  Второе доказывается абсолютно аналогичным способом.
+Если вспомнить, что $G(\mathcal{A}) = 1$, то утверждение доказывается просто подстановкой $\beta = 0$.
+
+Далее будет доказано второе утверждение.  Третье доказывается абсолютно аналогичным способом.
 
 Обозначим $\esssup x$ как $M$.   Для какого-то $\varepsilon > 0$ разобьем множество $\mathcal{A}$ на два дизъюнктных подмножества: 
 $\mathcal{D}_\varepsilon = \left\{ \theta \in \mathcal{A} \mid x(\theta) > M - \varepsilon \right\}$
