@@ -157,7 +157,7 @@ $$
 \begin{proposition}
 Пусть веса заданы как \eqref{eq:weight} и $x(\theta) \geq 0$ для любого $\theta$.  Тогда 
 \begin{enumerate}
-\item $\bar{x}(\beta) = \int\limits_{\theta \in \mathcal{A}}x(\theta)G(d \theta) = \mathbb{E} x$
+\item $\bar{x}(0) = \int\limits_{\theta \in \mathcal{A}}x(\theta)G(d \theta) = \mathbb{E} x$
 \item $\lim\limits_{\beta \to\infty} \bar{x}(\beta) = \esssup\limits_{\theta} x(\theta)$
 \item $\lim\limits_{\beta \to-\infty} \bar{x}(\beta) = \essinf\limits_{\theta} x(\theta)$.
 \end{enumerate}.
@@ -189,8 +189,8 @@ $ \widetilde{\mathcal{D}}_\varepsilon = \mathcal{A} \setminus \mathcal{D}_\varep
 \begin{equation*}
 \bar{x}(\beta) = \frac{G(\mathcal{D}_\varepsilon) x_{M_1}^{\beta + 1} + G(\widetilde{\mathcal{D}}_\varepsilon) x_{m_1}^{\beta+1}}{G(\mathcal{D}_\varepsilon) x_{M_2}^{\beta} + G(\widetilde{\mathcal{D}}_\varepsilon) x_{m_2}^{\beta}}.
 \end{equation*}
-Так как $x_{M_1} > x_{m_1}$ по определению то,  при $\beta \to \infty$,  $x_{m_1} = o(x_{M_1}). $ 
-Аналогично $x_{m_2} = o(x_{M_2}). $ 
+Так как $x_{M_1} > x_{m_1}$ по определению то,  при $\beta \to \infty$,  $x_{m_1}^\beta = o(x_{M_1}^\beta). $ 
+Аналогично $x_{m_2}^\beta = o(x_{M_2}^\beta). $ 
 Из определения чисел $x_{M_1}$ и $x_{M_2}$,  следует,  что $\abs{x_{M_i} - M} < \varepsilon$.  Поэтому при $\varepsilon \to 0$ оба $x_{M_i}$ стремятся к $M$. 
 А так как $G(\mathcal{D}_\varepsilon) \neq 0$ ,  то
 \begin{equation*}
