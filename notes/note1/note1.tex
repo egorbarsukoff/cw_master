@@ -184,15 +184,24 @@ $ \widetilde{\mathcal{D}}_\varepsilon = \mathcal{A} \setminus \mathcal{D}_\varep
 \end{align*}
 Поэтому 
 \begin{equation*}
-\bar{x}(\theta') = \frac{G(\mathcal{D}_\varepsilon) x_{M_1}^{\beta + 1} + G(\widetilde{\mathcal{D}}_\varepsilon) x_{m_1}^{\beta+1}}{G(\mathcal{D}_\varepsilon) x_{M_2}^{\beta} + G(\widetilde{\mathcal{D}}_\varepsilon) x_{m_2}^{\beta}}.
+\bar{x}(\beta) = \frac{G(\mathcal{D}_\varepsilon) x_{M_1}^{\beta + 1} + G(\widetilde{\mathcal{D}}_\varepsilon) x_{m_1}^{\beta+1}}{G(\mathcal{D}_\varepsilon) x_{M_2}^{\beta} + G(\widetilde{\mathcal{D}}_\varepsilon) x_{m_2}^{\beta}}.
 \end{equation*}
 Так как $x_{M_1} > x_{m_1}$ по определению то,  при $\beta \to \infty$,  $x_{m_1} = o(x_{M_1}). $ 
 Аналогично $x_{m_2} = o(x_{M_2}). $ 
 Из определения чисел $x_{M_1}$ и $x_{M_2}$,  следует,  что $\abs{x_{M_i} - M} < \varepsilon$.  Поэтому при $\varepsilon \to 0$ оба $x_{M_i}$ стремятся к $M$. 
 А так как $G(\mathcal{D}_\varepsilon) \neq 0$ ,  то
 \begin{equation*}
-\bar{x}(\theta') = \frac{G(\mathcal{D}_\varepsilon) x_{M_1}^{\beta + 1} + o(x_{M_1}^{\beta+1})}{G(\mathcal{D}_\varepsilon) x_{M_2}^{\beta} + o(x_{M_2}^{\beta})} \xrightarrow[\beta \to \infty]{ \varepsilon \to 0} \frac{G(\mathcal{D}_\varepsilon)M^{\beta+1}}{G(\mathcal{D}_\varepsilon)M^{\beta}} = M = \esssup x.
+\lim\limits_{\substack{\beta \to \infty \\  \varepsilon \to 0}} \bar{x}(\beta) = 
+\lim\limits_{\substack{\beta \to \infty \\  \varepsilon \to 0}} \frac{G(\mathcal{D}_\varepsilon) x_{M_1}^{\beta + 1} + o(x_{M_1}^{\beta+1})}{G(\mathcal{D}_\varepsilon) x_{M_2}^{\beta} + o(x_{M_2}^{\beta})} =
+\lim\limits_{\substack{\beta \to \infty \\  \varepsilon \to 0}}  \frac{G(\mathcal{D}_\varepsilon)M^{\beta+1}}{G(\mathcal{D}_\varepsilon)M^{\beta}} = M = \esssup x.
 \end{equation*}
+\end{proof}
+
+\begin{proposition}
+Если $\beta(\theta_1) > \beta(\theta_2)$, и веса заданы как \eqref{eq:weight}, тогда $\bar{x}(\theta_1) > \bar{x}(\theta_1)$.
+\end{proposition}
+\begin{proof}
+ff
 \end{proof}
 
 Такая функция весов имеет смысл потому что при $\beta(\theta) \rightarrow \infty$ распределение $G_\theta$ слабо сходится к $\delta_{\max x}$,  а при $\beta(\theta) \rightarrow -\infty$ оно слабо сходится к $\delta_{\min x}$.  
