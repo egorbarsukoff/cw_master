@@ -1,0 +1,166 @@
+\documentclass[unicode]{beamer}
+% If you have more than three sections or more than three subsections in at least one section,
+% you might want to use the [compress] switch. In this case, only the current (sub-) section
+% is displayed in the header and not the full overview.
+%\mode<presentation>
+%{
+%  
+%
+%  \setbeamercovered{transparent}
+%  \beamertemplatenavigationsymbolsempty
+%  % or whatever (possibly just delete it)
+%}
+
+\mode<handout> {
+    \usepackage{pgfpages}
+    \setbeameroption{show notes}
+    \pgfpagesuselayout{2 on 1}[a4paper, border shrink=5mm]
+}
+
+%\usepackage{pscyr}
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsthm}
+\usepackage{pdfpages}
+\usepackage{bibentry}
+
+\usepackage{natbib}   % omit 'round' option if you prefer square brackets
+\bibliographystyle{plainnat}
+
+\graphicspath{{fig/}}
+
+%\usepackage{tikz}
+% you only need this when using TikZ graphics
+
+%\newtheorem{theorem}{Теорема}
+%\newtheorem{example}{Пример}
+%\newtheorem{definition}{Определение}
+
+
+\DeclareMathOperator*{\E}{\mathrm{E}}
+\DeclareMathOperator*{\D}{\mathrm{D}}
+\DeclareMathOperator*{\sign}{sign}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\Int}{Int}
+\DeclareMathOperator*{\err}{err}
+\newcommand\norm[1]{\left\lVert#1\right\rVert}
+\newcommand\abs[1]{\left\lvert#1\right\rvert}
+
+
+\title[Оптимальные планы для оценивания производных]{How ambition affects role model choices: heterogeneous peer-effects in networks}
+
+%\author{Барсуков Егор Вячеславович, гр. 16-Б.04мм}
+%\institute[СПбГУ]{
+%    Санкт-Петербургский государственный университет \\
+%    Математико-Механический факультет \\
+%    Кафедра статистического моделирования \\
+%   \vspace{1.25cm}
+%    Преддипломная практика
+%}
+%
+%\date{
+%	Санкт-Петербург \\
+%    2020 г.
+%}
+
+%\subject{Beamer}
+% This is only inserted into the PDF information catalog. Can be left
+% out.
+
+% Delete this, if you do not want the table of contents to pop up at
+% the beginning of each subsection:
+% \AtBeginSubsection[]
+% {
+%   \begin{frame}<beamer>
+%     \frametitle{Outline}
+%     \tableofcontents[currentsection,currentsubsection]
+%   \end{frame}
+% }
+%
+%\institute[Санкт-Петербургский Государственный Университет]{
+%    \small
+%    Санкт-Петербургский государственный университет\\
+%    Прикладная математика и информатика\\
+%    Вычислительная стохастика и статистические модели\\
+%    \vspace{1.25cm}
+%    Преддипломная практика}
+
+\date{Санкт-Петербург, 2021}
+
+\begin{document}
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}
+\frametitle{Предпосылки}
+	$$
+	x_{ig} = z_{ig} + \gamma_g \gamma + \frac{\theta}{N_g - 1} \sum\limits_{j \neq i} x_{jg} + \varepsilon_{ig}
+	$$
+\end{frame}
+
+\begin{frame}
+\frametitle{В предыдущих сериях}
+	$$
+	u_i = -\frac{1}{2}(x_i-\alpha_i)^2-\frac{1}{2}\frac{\lambda}{1-\lambda}\left(x_i - \overline{x}_i\right)^2
+	$$
+	F.O.C.:
+	$$
+	x_i = (1- \lambda)\alpha_i + \lambda \bar{x}_i
+	$$
+	Предполагалось,  что $\bar{x}_i$ --- среднее по всем соседям в заданном графе.
+\end{frame}
+
+\begin{frame}
+\frametitle{Вопрос}
+	Что, если $\bar{x}_i$ --- какое-то другое среднее? Если структура графа определяется внутренними свойствами выборки?
+	
+	Пусть $\bar{x}_i$ зависит от какого-то параметра $\beta_i$,  причем:
+	\begin{itemize}
+	\item $\bar{x}_i(0) = \mathbb{E}x$
+	\item $\lim\limits_{\beta \to \infty} \bar{x}_i(\beta) = \argmax x$
+	\item $\lim\limits_{\beta \to -\infty} \bar{x}_i(\beta) = \argmin x$
+	\item монотонно возрастает по $\beta$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Социальная норма}
+$$
+\bar{x}_i = \frac{\sum x_j^{\beta_i + 1}}{\sum x_j^{\beta_i}}
+$$
+\begin{itemize}
+	\item зависит от $\beta_i$ и $x$
+	\item можно записать как взвешенное среднее (поэтому задает структуру взвешенного графа)
+	
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fixed - point condition}
+	$$
+	x_i = (1 - \lambda) a_i + \lambda \frac{\sum x_j^{\beta_i + 1}}{\sum x_j^{\beta_i}}
+	$$
+\end{frame}
+
+\begin{frame}
+	Что было сделано:
+	\begin{itemize}
+	\item Показано существование и единственность решений для F.O.C.  с (не только) предложенным $\bar{x}$
+	\item Показаны свойства $\bar{x}$ в непрерывном случае
+	\item Разработан численный алгоритм
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	 Что нужно сделать
+	 \begin{itemize}
+	 \item Разбор литературы
+	 \item Численные результаты
+	 \item ???
+	 \end{itemize}
+\end{frame}
+
+\end{document}
